@@ -24,9 +24,14 @@ const App: React.FC = () => {
         <TextInput placeholder="Search for Repository ... "/>
         <Button text="Find"/>
       </div>
+      <>
          <CardList loading={loadingState} />
         {/* <Loading /> */}
-    </div>
+      </>
+      <Button text="Load More"/>
+      </div>
+      
+
   );
 }
 
