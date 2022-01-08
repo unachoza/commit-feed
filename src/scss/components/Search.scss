@@ -1,0 +1,15 @@
+.search-container{
+  display: flex;
+  flex-direction: row;
+  border: solid black;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto
+}
+
+input{
+  height: 40px;
+  margin: 10px;
+  width: 200px
+
+}

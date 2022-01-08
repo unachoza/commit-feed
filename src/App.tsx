@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import Loading from "./Components/PulseLoader/PulseLoader"
 import Button from './Components/Button/Button'
+import Header from './Components/Header/Header'
+import TextInput from './Components/Input/TextInput'
 import "./scss/main.scss"
 export interface LoadingState {
   onLoading: boolean;
@@ -16,11 +18,12 @@ const App: React.FC = () => {
   const [loadingState, setLoadingState] = useState<LoadingState>(INITIALSTATE);
   return (
     <div className="App">
-      <header className="App-header">
-        YASSS TYPESCRIPT
+      <Header text="Github Commit Feed" />
+      <div className="search-container">
+        <TextInput placeholder="Search for Repository ... "/>
         <Button text="Find"/>
-        <Loading />
-      </header>
+      </div>
+        {/* <Loading /> */}
     </div>
   );
 }
