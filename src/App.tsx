@@ -1,9 +1,10 @@
 //@ts-nocheck
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import Loading from "./Components/PulseLoader/PulseLoader"
 import Button from './Components/Button/Button'
 import Header from './Components/Header/Header'
 import TextInput from './Components/Input/TextInput'
+import CardList from './Components/CardList/CardList'
 import "./scss/main.scss"
 export interface LoadingState {
   onLoading: boolean;
@@ -22,6 +23,7 @@ const App: React.FC = () => {
       <div className="search-container">
         <TextInput placeholder="Search for Repository ... "/>
         <Button text="Find"/>
+         <CardList loading={loadingState} />
       </div>
         {/* <Loading /> */}
     </div>
