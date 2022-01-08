@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
-import './App.css';
+//@ts-nocheck
+import React, { useState } from 'react';
+import Loading from "./Components/PulseLoader/PulseLoader"
+import "./scss/main.scss"
 export interface LoadingState {
   onLoading: boolean;
   onError: boolean;
@@ -14,7 +16,8 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
-       YASSS TYPESCRIPT
+        YASSS TYPESCRIPT
+        <Loading/>
       </header>
     </div>
   );
