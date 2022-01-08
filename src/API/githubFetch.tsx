@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 const GITHUB_BASE_URL = 'https://api.github.com';
 
 export const repositoryFetch = async( queryText: string): Promise<any> => {
@@ -9,7 +8,7 @@ export const repositoryFetch = async( queryText: string): Promise<any> => {
   console.log({repositoryChoices})
   return repositoryChoices
 };
-// api.github.com/repos/unachoza/susan-says/commits
+
 export const commitFetch = async( repositoryOwner: string, repositoryName: string): Promise<any> => {
   const data = await axios.get(`${GITHUB_BASE_URL}/repos/${encodeURIComponent(repositoryOwner)}/${encodeURIComponent(repositoryName)}/commits`);
   const items = data.data
@@ -28,7 +27,7 @@ export const commitFetch = async( repositoryOwner: string, repositoryName: strin
  };
 
 const normalizeCommitData = (data: any) => ({
-  date: new Date(data.commit.author.date).toString(),
+  date: normalizeDate(new Date(data.commit.author.date).toString()),
   commitMessage: data.commit.message, 
   url: data.html_url,
   username: data.author.login
@@ -37,3 +36,12 @@ const normalizeRepoData = (data: any) => ({
   repositoryName: data.name, 
   repositoryOwner: data.owner.login 
 })
+
+const normalizeDate = (data: string) => {
+  const shorterDate  = data.split("").splice(4, 20)
+  const date = {
+    day: (shorterDate.join("")).slice(0, 11), 
+    time: (shorterDate.join("")).slice(12), 
+  }
+  return date
+}
