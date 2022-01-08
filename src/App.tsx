@@ -23,8 +23,8 @@ const App: React.FC = () => {
       <div className="search-container">
         <TextInput placeholder="Search for Repository ... "/>
         <Button text="Find"/>
-         <CardList loading={loadingState} />
       </div>
+         <CardList loading={loadingState} />
         {/* <Loading /> */}
     </div>
   );

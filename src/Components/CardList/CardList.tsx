@@ -14,7 +14,7 @@ const CardList = ({ loading }) => {
           Oh dear!<br></br> Your search returned no events.
         </div>
       ) : cardListings.length === 1 ? (
-        <Card card={cardListings[0]} />
+        <Card title={cardListings[0]} />
       ) : (
         <ul>
           {Object.entries(cardListings).map((event, i) =>
