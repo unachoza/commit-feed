@@ -7,3 +7,16 @@ a {
   right: 0;
   border-radius: 6.75rem;
 }
+.button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  width:112px;
+  height: 35px;
+  color: black;
+  background-color: $chron-green;
+  border: solid $chron-green;
+  font-size: 14px;
+  font-weight: 600;
+}
