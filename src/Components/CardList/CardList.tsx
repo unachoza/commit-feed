@@ -9,6 +9,7 @@ const CardList = ({ loading }) => {
   return (
     <div className="event-list__container">
       {/* {loading && <LoadingSpinner loading={loading} />} */}
+      <div className="title">Showing Results For<span> Chat Bot</span> </div>
       {!cardListings.length ? (
         <div className="no-results">
           Oh dear!<br></br> Your search returned no events.

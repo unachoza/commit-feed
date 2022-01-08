@@ -23,3 +23,16 @@
   
 }
 }
+
+.date {
+  text-align: left;
+  padding: 5px;
+  font-size: 12px;
+}
+.date:after {
+  content: '';
+  display: block;
+  width: 90%;
+  padding-top: 3px;
+  border-bottom: solid 1px rgb(161, 159, 159);
+}

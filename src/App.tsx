@@ -28,7 +28,10 @@ const App: React.FC = () => {
          <CardList loading={loadingState} />
         {/* <Loading /> */}
       </>
+      <div className="button-container">
+
       <Button text="Load More"/>
+      </div>
       </div>
       
 
