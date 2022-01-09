@@ -1,8 +1,8 @@
 //@ts-nocheck
 import React from "react";
 
-const TextInput = ({ placeholder, setRepositoryQuery }) => {
-  console.log(setRepositoryQuery)
-  return <div className="text-input"><input type="text" placeholder={placeholder} onBlur={(e) => setRepositoryQuery(e.target.value)}/></div>;
+const TextInput = ({ placeholder, setSearchValue }) => {
+  console.log(setSearchValue)
+  return <div className="text-input"><input type="text" placeholder={placeholder} onBlur={(e) => setSearchValue(e.target.value)}/></div>;
 };
 export default TextInput;
