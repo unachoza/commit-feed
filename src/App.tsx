@@ -23,12 +23,16 @@ const App: React.FC = () => {
   const [commits, setCommits] = useState([])
   const [repositoryQuery, setRepositoryQuery] = useState("")
 
+  const searchRepositories = () => {
+    setRepositoryChoices(repositoryFetch(repositoryQuery))
+  }
+  console.log({repositoryChoices})
   return (
     <div className="App">
       <Header text="Github Commit Feed" />
       <div className="search-container">
         <TextInput placeholder="Search for Repository ... "  setRepositoryQuery = { setRepositoryQuery }/>
-        <Button text="Find" onClick={(e) => console.log("hello this workds")}/>
+        <Button text="Find" onClick={() => searchRepositories() } />
       </div>
       <>
          <CardList loading={loadingState} />
@@ -36,7 +40,7 @@ const App: React.FC = () => {
       </>
       <div className="button-container">
 
-        <Button text="Load More" onClick={() => console.log("also working") }/>
+        <Button text="Load More" onClick={(e) => console.log("hello this workds")}/>
       </div>
       </div>
       
