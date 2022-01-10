@@ -17,7 +17,6 @@ export const repositoryFetch = async( queryText: string)  => {
   const data = await axios.get(`${GITHUB_BASE_URL}/search/repositories?q=${encodeURIComponent(queryText)}`);
   const items = data.data.items
   const repositoryChoices = shapeData(items, normalizeRepoData)
-  console.log({ repositoryChoices })
   return repositoryChoices
 };
 
@@ -25,7 +24,6 @@ export const commitFetch = async( repositoryOwner: string, repositoryName: strin
   let data = await axios.get(`${GITHUB_BASE_URL}/repos/${encodeURIComponent(repositoryOwner)}/${encodeURIComponent(repositoryName)}/commits`);
   const items = data.data
   const repositoryCommitMessages = shapeData(items, normalizeCommitData)
-  console.log({ repositoryCommitMessages })
   
   return repositoryCommitMessages
 };

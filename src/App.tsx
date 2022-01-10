@@ -25,25 +25,21 @@ const App: React.FC = () => {
   const [repositoryQueryTitle, setRepositoryQueryTitle] = useState("")
 
   const [commits, setCommits] = useState([]);
-console.log({repositoryQueryOwner}, {repositoryQueryTitle})
   const searchRepositories = () => {
     setRepositoryChoices(repositoryFetch(repositoryQuery));
     setSelectedRepo(repositoryChoices[0])
   };
-  console.log(repositoryChoices[0])
   const fetchCommits = (owner, title) => {
-    console.log({ repositoryChoices })
     setCommits(commitFetch(owner, title));
   };
   
-  console.log({ repositoryChoices }); 
   return (
     <div className="App">
       <Header text="Github Commit Feed" />
       <div className="search-container">
         <TextInput placeholder="Repository Owner" setSearchValue={setRepositoryQueryOwner} />
         <TextInput placeholder="Repository Title " setSearchValue={setRepositoryQueryTitle} />
-        <Button text="Find" onClick={() => searchRepositories()} />
+        <Button text="Load More" onClick={() => fetchCommits(repositoryQueryOwner, repositoryQueryTitle)} />
       </div>
       <>
         {/* {repositoryChoices.length > 0 ? (

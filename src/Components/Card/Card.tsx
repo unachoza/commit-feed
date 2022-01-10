@@ -2,7 +2,6 @@
 import React from "react";
 
 const Card: React.FC = ({ title }) => {
-  console.log(title)
   return <div className="card">
     <div className="date-container">
 
