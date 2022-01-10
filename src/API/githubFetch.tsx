@@ -8,10 +8,6 @@ const GITHUB_BASE_URL = 'https://api.github.com';
 // export const repositorySearch = (queryText: string) => {
 //   const [repositoryChoices, setRepositoryChoices] = useState([])
 
-//   useEffect(() => {
-//     setRepositoryChoices(repositoryFetch(queryText))
-//   }, [queryText])
-// }
 
 export const repositoryFetch = async( queryText: string)  => {
   const data = await axios.get(`${GITHUB_BASE_URL}/search/repositories?q=${encodeURIComponent(queryText)}`);
@@ -19,11 +15,29 @@ export const repositoryFetch = async( queryText: string)  => {
   const repositoryChoices = shapeData(items, normalizeRepoData)
   console.log({ repositoryChoices })
   return repositoryChoices
-};
+}
+export const useCommitFetch = () => {
+  useEffect(() => {
+    const effect = async () => {
+      const results = await repositoryFetch(queryText)
+      console.log({results})
+      return results 
+    };
+    effect();
+  }, []);
+}
+// useEffect(() => {
+//   setRepositoryChoices(repositoryFetch(queryText))
+//   console.log(repositoryFetch(queryText))
+// }, [queryText]
+// )}
+
 
 export const commitFetch = async( repositoryOwner: string, repositoryName: string)  => {
   let data = await axios.get(`${GITHUB_BASE_URL}/repos/${encodeURIComponent(repositoryOwner)}/${encodeURIComponent(repositoryName)}/commits`);
-  const items = data.data
+   data = data.data
+  const items = await data.toJSON(); 
+  console.log(items)
   const repositoryCommitMessages = shapeData(items, normalizeCommitData)
   console.log({ repositoryCommitMessages })
   

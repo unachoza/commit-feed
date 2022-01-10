@@ -1,6 +1,6 @@
 //@ts-nocheck
 import React, { useState, useRef, useCallback } from "react";
-import { repositoryFetch, commitFetch } from "./API/githubFetch";
+import { repositoryFetch, useCommitFetch, commitFetch } from "./API/githubFetch";
 import Loading from "./Components/PulseLoader/PulseLoader";
 import Button from "./Components/Button/Button";
 import Header from "./Components/Header/Header";
@@ -31,15 +31,15 @@ console.log({repositoryQueryOwner}, {repositoryQueryTitle})
     setSelectedRepo(repositoryChoices[0])
   };
   console.log(repositoryChoices[0])
-  const fetchCommits = (owner, title) => {
+  const fetchCommits = async (owner, title) => {
     console.log({ repositoryChoices })
-    setCommits(commitFetch(owner, title));
+    const res = await repositoryChoices
+    setRepositoryChoices(res)
+    console.log({ repositoryChoices })
   };
-  const loadThese = () => {
-    
+  const repositoryCommitMessages = useCommitFetch(repositoryQueryOwner, repositoryQueryTitle)
+console.log(repositoryCommitMessages)
 
-
-  }
 
   console.log({ repositoryChoices });
   return (
@@ -54,7 +54,7 @@ console.log({repositoryQueryOwner}, {repositoryQueryTitle})
         {/* {repositoryChoices.length > 0 ? (
           <> */}
             <CardList loading={loadingState} repositoryChoices={repositoryChoices[0]} />
-            <Button text="Load More" onClick={() => fetchCommits(repositoryQueryOwner, repositoryQueryTitle)} />
+            <Button text="Load More" onClick={() => commitFetch(repositoryQueryOwner, repositoryQueryTitle)} />
           {/* </>
         ) : (
             null
