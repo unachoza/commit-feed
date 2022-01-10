@@ -35,13 +35,8 @@ console.log({repositoryQueryOwner}, {repositoryQueryTitle})
     console.log({ repositoryChoices })
     setCommits(commitFetch(owner, title));
   };
-  const loadThese = () => {
-    
-
-
-  }
-
-  console.log({ repositoryChoices });
+  
+  console.log({ repositoryChoices }); 
   return (
     <div className="App">
       <Header text="Github Commit Feed" />
