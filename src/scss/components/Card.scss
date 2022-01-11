@@ -7,7 +7,7 @@
     padding: 20px;
   text-align: center;
   margin: 20px 5px;
-  padding: 6px 0px 6px 12px;
+  // padding: 6px 0px 6px 12px;
   background-color: white;
   border-radius: 10px;
   overflow: hidden;
@@ -16,12 +16,6 @@
   transition: transform 0.5s;
   box-shadow: 0px 5px 10px rgb(0 0 0 / 40%);
   animation: moveInLeft 0.3s ease-in;
-.owner{
-  // border: solid red;
-}
-.date-container{
-  
-}
 }
 
 .date {
@@ -35,4 +29,7 @@
   width: 90%;
   padding-top: 3px;
   border-bottom: solid 1px rgb(161, 159, 159);
+}
+a {
+  text-decoration: none;
 }

@@ -53,7 +53,7 @@ const {data, error, loading} = useFetch(repositoryQueryOwner,repositoryQueryTitl
         {/* {error ? <h1>Opps there was an error</h1> : null} */}
         {/* {repositoryChoices.length > 0 ? (
           <> */}
-            <CardList loading={loadingState} data={data} />
+        <CardList loading={loadingState} data={data} title={repositoryQueryTitle}/>
             <Button text="Load More" onClick={() => fetchCommits(repositoryQueryOwner, repositoryQueryTitle)} />
           {/* </>
         ) : (
