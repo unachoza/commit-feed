@@ -1,17 +1,8 @@
 //@ts-nocheck
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 const GITHUB_BASE_URL = 'https://api.github.com';
 
-// const [commits, setCommits] = useState([]);
-
-// export const repositorySearch = (queryText: string) => {
-//   const [repositoryChoices, setRepositoryChoices] = useState([])
-
-//   useEffect(() => {
-//     setRepositoryChoices(repositoryFetch(queryText))
-//   }, [queryText])
-// }
 
 export const repositoryFetch = async( queryText: string)  => {
   const data = await axios.get(`${GITHUB_BASE_URL}/search/repositories?q=${encodeURIComponent(queryText)}`);
@@ -21,19 +12,32 @@ export const repositoryFetch = async( queryText: string)  => {
   return repositoryChoices
 };
 
-export const commitFetch = async( repositoryOwner: string, repositoryName: string)  => {
-  let data = await axios.get(`${GITHUB_BASE_URL}/repos/${encodeURIComponent(repositoryOwner)}/${encodeURIComponent(repositoryName)}/commits`);
-  const items = data.data
-  const repositoryCommitMessages = shapeData(items, normalizeCommitData)
-  console.log({ repositoryCommitMessages })
+
+export const useFetch = (repositoryOwner: string, repositoryName: string) => {
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
   
-  return repositoryCommitMessages
-};
-
-// export const commitFetch = () => {
-//   const [commitFetch, setommitFetch] = useState({})
-// }
-
+  useEffect(() => {
+    const fetchCommits= async () => {
+      setLoading(true)
+      try {
+        const commits = await axios.get(`${GITHUB_BASE_URL}/repos/${encodeURIComponent(repositoryOwner)}/${encodeURIComponent(repositoryName)}/commits`);
+        const items = commits.data
+        const repositoryCommitMessages = shapeData(items, normalizeCommitData)
+        setData(repositoryCommitMessages)
+      }
+      catch (err) {
+        setError(err)
+      }
+      finally {
+        setLoading(false)
+      }
+    }
+    fetchCommits()
+  }, [repositoryName])
+  return {data, loading, error}
+}
  //Make fetched data easier to work with
  const shapeData = (input: any, normalizedDataShape: any) => {
   let shapedData = [];
@@ -62,8 +66,3 @@ const normalizeDate = (data: string) => {
   }
   return date
 }
-
-// const fetchCommits = (owner: string, repo: string, more: boolean) => {
-//   const [commits, setCommits] = useState({})
-
-// }

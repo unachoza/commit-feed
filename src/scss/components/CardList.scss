@@ -1,13 +1,13 @@
 .title{
   font-size:30px
 }
-.event-list__container {
+.commit__container {
   justify-content: center;
   align-items: center;
   margin: 11vh 20px 0vh 35px;
   border-radius: 10px;
   overflow: scroll;
-  padding: 0;
+  padding: 20px;
   animation: crescendo 0.3s ease-in;
 }
 
@@ -28,33 +28,33 @@ li {
   animation: crescendo 0.3s ease-in;
 }
 
-.event-list__container ul {
+.commit__container ul {
   list-style-type: none;
 }
 
-.event-list__container li {
+.commit__container li {
   animation: crescendo 0.2s forwards;
   display: block;
 }
-.event-list__container li:first-child {
+.commit__container li:first-child {
   animation-delay: 0s;
 }
-.event-list__container li:nth-child(2) {
+.commit__container li:nth-child(2) {
   animation-delay: 0.2s;
 }
-.event-list__container li:nth-child(3) {
+.commit__container li:nth-child(3) {
   animation-delay: 0.4s;
 }
-.event-list__container li:nth-child(4) {
+.commit__container li:nth-child(4) {
   animation-delay: 0.8s;
 }
-.event-list__container li:nth-child(5) {
+.commit__container li:nth-child(5) {
   animation-delay: 1s;
 }
-.event-list__container li:nth-child(6) {
+.commit__container li:nth-child(6) {
   animation-delay: 1.2s;
 }
-.event-list__container li:nth-child(7) {
+.commit__container li:nth-child(7) {
   animation-delay: 1.4s;
 }
 
@@ -92,7 +92,7 @@ li {
   }
 }
 @media only screen and (max-width: 760px) {
-  .event-list__container {
+  .commit__container {
     width: 100vw;
     overflow: none;
     height: 88vh;

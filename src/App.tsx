@@ -1,11 +1,13 @@
 //@ts-nocheck
 import React, { useState, useRef, useCallback } from "react";
-import { repositoryFetch, commitFetch } from "./API/githubFetch";
+
 import Loading from "./Components/PulseLoader/PulseLoader";
 import Button from "./Components/Button/Button";
 import Header from "./Components/Header/Header";
 import TextInput from "./Components/Input/TextInput";
 import CardList from "./Components/CardList/CardList";
+import {useFetch} from './API/useFetch'
+
 
 import "./scss/main.scss";
 export interface LoadingState {
@@ -23,37 +25,35 @@ const App: React.FC = () => {
   const [selectedRepo, setSelectedRepo] = useState({})
   const [repositoryQueryOwner, setRepositoryQueryOwner] = useState("")
   const [repositoryQueryTitle, setRepositoryQueryTitle] = useState("")
-
   const [commits, setCommits] = useState([]);
-console.log({repositoryQueryOwner}, {repositoryQueryTitle})
+
+const {data, error, loading} = useFetch(repositoryQueryOwner,repositoryQueryTitle )
+
+  console.log({data}, {error}, {loading})
+
   const searchRepositories = () => {
     setRepositoryChoices(repositoryFetch(repositoryQuery));
     setSelectedRepo(repositoryChoices[0])
   };
-  console.log(repositoryChoices[0])
   const fetchCommits = (owner, title) => {
-    console.log({ repositoryChoices })
     setCommits(commitFetch(owner, title));
   };
-  const loadThese = () => {
-    
-
-
-  }
-
-  console.log({ repositoryChoices });
+  
   return (
     <div className="App">
       <Header text="Github Commit Feed" />
       <div className="search-container">
         <TextInput placeholder="Repository Owner" setSearchValue={setRepositoryQueryOwner} />
         <TextInput placeholder="Repository Title " setSearchValue={setRepositoryQueryTitle} />
-        <Button text="Find" onClick={() => searchRepositories()} />
+        <Button text="Load More" onClick={() => fetchCommits(repositoryQueryOwner, repositoryQueryTitle)} />
       </div>
       <>
+        
+        {loading ? <Loading /> : null}
+        {/* {error ? <h1>Opps there was an error</h1> : null} */}
         {/* {repositoryChoices.length > 0 ? (
           <> */}
-            <CardList loading={loadingState} repositoryChoices={repositoryChoices[0]} />
+        <CardList loading={loadingState} data={data} title={repositoryQueryTitle}/>
             <Button text="Load More" onClick={() => fetchCommits(repositoryQueryOwner, repositoryQueryTitle)} />
           {/* </>
         ) : (
