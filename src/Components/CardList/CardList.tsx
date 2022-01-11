@@ -5,27 +5,28 @@ import LoadingSpinner from '../PulseLoader/PulseLoader';
 
 const cardListings = [{title: 'one'}, {title: 'tewo'}, {title: 'three'}, {title: 'five'}, {title: 'more'}]
 
-const CardList = ({ loading }) => {
+const CardList = ({ loading, data }) => {
+  console.log(data)
   return (
     <div className="event-list__container">
       {/* {loading && <LoadingSpinner loading={loading} />} */}
       <div className="title">Showing Results For<span> Chat Bot</span> </div>
-      {!cardListings.length ? (
+      {!data.length ? (
         <div className="no-results">
-          Oh dear!<br></br> Your search returned no events.
+          Oh dear!<br></br> Your search returned no results.
         </div>
-      ) : cardListings.length === 1 ? (
-        <Card title={cardListings[0]} />
+      ) : data.length === 1 ? (
+        <Card title={data[0]} />
       ) : (
         <ul>
-          {Object.entries(cardListings).map((event, i) =>
-            cardListings.length === i + 1 ? (
+          {Object.entries(data).map((commit, i) =>
+            data.length === i + 1 ? (
               <div key={i}>
-                {event.title}
+                {commit.title}
               </div>
             ) : (
               <li>
-                <Card key={i} event={event[1]} />
+                <Card key={i} commit={commit} />
               </li>
             )
           )}
