@@ -1,5 +1,4 @@
 //@ts-nocheck
-import React from "react";
 
 const Card: React.FC = ({ commit }) => {
   console.log(commit);
