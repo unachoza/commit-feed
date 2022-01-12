@@ -5,24 +5,24 @@ interface CardListProps {
   title:string
 }
 const CardList = (props: CardListProps) => {
-  const {data, title} = props;
+  const {card, title} = props;
   return (
     <div className="commit__container">
-      {data.length ? (
+      {card.length ? (
         <div className="title">
           Showing Results For <strong>{title} </strong>
         </div>
       ) : null}
-      {data.length === 1 ? (
-        <Card title={data[0]} />
+      {card.length === 1 ? (
+        <Card title={card[0]} />
       ) : (
         <ul>
-          {Object.entries(data).map((commit, i) =>
-            data.length === i + 1 ? (
-              <div key={i}>{commit.title}</div>
+          {Object.entries(card).map((commit, i) =>
+            card.length === i + 1 ? (
+              <div key={`${commit.title} +${i}`}>{commit.title}</div>
             ) : (
               <li>
-                <Card key={i} commit={commit} />
+                <Card key={i} commit={commit[1]} />
               </li>
             )
           )}
@@ -33,14 +33,3 @@ const CardList = (props: CardListProps) => {
 };
 
 export default CardList;
-
-// const Card = () => {
-//   return (
-//     <div className="card-list">
-//       {cardList.map((card, i) => {
-//         <Card key={i} title={card} />;
-//       })}
-//     </div>
-//   );
-// };
-// export default Card;

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useState } from "react";
 import Loading from "./Components/PulseLoader/PulseLoader";
 import Button from "./Components/Button/Button";
@@ -10,9 +11,9 @@ import "./scss/main.scss";
 const App: React.FC = () => {
   const [repositoryQueryOwner, setRepositoryQueryOwner] = useState("")
   const [repositoryQueryTitle, setRepositoryQueryTitle] = useState("")
-  const [fire, setFire] = useState(false);
+  const [fireCommitFetch, setFireCommitFetch] = useState(false);
 
-const {data, error, loading} = useFetch(repositoryQueryOwner,repositoryQueryTitle, fire )
+const {data, loading} = useFetch(repositoryQueryOwner,repositoryQueryTitle, fireCommitFetch )
 
   return (
     <div className="App">
@@ -20,11 +21,11 @@ const {data, error, loading} = useFetch(repositoryQueryOwner,repositoryQueryTitl
       <div className="search-container">
         <TextInput placeholder="Repository Owner" setSearchValue={setRepositoryQueryOwner} />
         <TextInput placeholder="Repository Title " setSearchValue={setRepositoryQueryTitle} />
-        <Button text="Load More" onClick={() => setFire(prevFire => !prevFire)} />
+        <Button text="Load More" onClick={() => setFireCommitFetch(prevFireCommitFetch => !prevFireCommitFetch)} />
       </div>
       <>
         {loading ? <Loading /> : null}
-        <CardList data={data} title={repositoryQueryTitle}/>
+        <CardList card={data} title={repositoryQueryTitle}/>
       </>
     </div>
   );
