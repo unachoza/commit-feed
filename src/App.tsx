@@ -1,6 +1,5 @@
 //@ts-nocheck
 import React, { useState, useRef, useCallback } from "react";
-
 import Loading from "./Components/PulseLoader/PulseLoader";
 import Button from "./Components/Button/Button";
 import Header from "./Components/Header/Header";
@@ -26,42 +25,22 @@ const App: React.FC = () => {
   const [repositoryQueryOwner, setRepositoryQueryOwner] = useState("")
   const [repositoryQueryTitle, setRepositoryQueryTitle] = useState("")
   const [commits, setCommits] = useState([]);
+  const [fire, setFire] = useState(false);
 
-const {data, error, loading} = useFetch(repositoryQueryOwner,repositoryQueryTitle )
+const {data, error, loading} = useFetch(repositoryQueryOwner,repositoryQueryTitle, fire )
 
-  console.log({data}, {error}, {loading})
-
-  const searchRepositories = () => {
-    setRepositoryChoices(repositoryFetch(repositoryQuery));
-    setSelectedRepo(repositoryChoices[0])
-  };
-  const fetchCommits = (owner, title) => {
-    setCommits(commitFetch(owner, title));
-  };
-  
   return (
     <div className="App">
       <Header text="Github Commit Feed" />
       <div className="search-container">
         <TextInput placeholder="Repository Owner" setSearchValue={setRepositoryQueryOwner} />
         <TextInput placeholder="Repository Title " setSearchValue={setRepositoryQueryTitle} />
-        <Button text="Load More" onClick={() => fetchCommits(repositoryQueryOwner, repositoryQueryTitle)} />
+        <Button text="Load More" onClick={() => setFire(prevFire => !prevFire)} />
       </div>
       <>
-        
         {loading ? <Loading /> : null}
-        {/* {error ? <h1>Opps there was an error</h1> : null} */}
-        {/* {repositoryChoices.length > 0 ? (
-          <> */}
         <CardList loading={loadingState} data={data} title={repositoryQueryTitle}/>
-            <Button text="Load More" onClick={() => fetchCommits(repositoryQueryOwner, repositoryQueryTitle)} />
-          {/* </>
-        ) : (
-            null
-          // <Loading />
-        )} */}
       </>
-      <div className="button-container"></div>
     </div>
   );
 };

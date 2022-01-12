@@ -8,12 +8,11 @@ export const repositoryFetch = async( queryText: string)  => {
   const data = await axios.get(`${GITHUB_BASE_URL}/search/repositories?q=${encodeURIComponent(queryText)}`);
   const items = data.data.items
   const repositoryChoices = shapeData(items, normalizeRepoData)
-  console.log({ repositoryChoices })
   return repositoryChoices
 };
 
 
-export const useFetch = (repositoryOwner: string, repositoryName: string) => {
+export const useFetch = (repositoryOwner: string, repositoryName: string, fire: boolean) => {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -35,7 +34,7 @@ export const useFetch = (repositoryOwner: string, repositoryName: string) => {
       }
     }
     fetchCommits()
-  }, [repositoryName])
+  }, [fire])
   return {data, loading, error}
 }
  //Make fetched data easier to work with
