@@ -1,50 +1,36 @@
 //@ts-nocheck
-import React, {useState} from "react";
+import React from 'react';
 import Card from "../Card/Card";
-
-const CardList = ({ data , title}) => {
-  console.log(data)
+interface CardListProps {
+  data: any,
+  title:string
+}
+const CardList = (props: CardListProps): JSX.Element => {
+  const {card, title} = props;
   return (
     <div className="commit__container">
-      <div className="title">Showing Results For <strong>{title} </strong></div>
-      {!data.length ? (
-        <div className="no-results">
-          Oh dear!<br></br> Your search returned no results.
+      {card.length ? (
+        <div className="title">
+          Showing Results For <strong>{title} </strong>
         </div>
-      ) : data.length === 1 ? (
-        <Card title={data[0]} />
+      ) : null}
+      {card.length === 1 ? (
+        <Card title={card[0]} />
       ) : (
         <ul>
-          {Object.entries(data).map((commit, i) =>
-            data.length === i + 1 ? (
-              <div key={i}>
-                {commit.title}
-              </div>
+          {Object.entries(card).map((commit, i) =>
+            card.length === i + 1 ? (
+              <div key={`${commit.title} +${i}`}>{commit.title}</div>
             ) : (
               <li>
-                <Card key={i} commit={commit} />
+                <Card key={i} commit={commit[1]} />
               </li>
             )
           )}
         </ul>
       )}
-      {/* {loading && <LoadingSpinner loading={loading} />} */}
     </div>
   );
 };
 
 export default CardList;
-
-
-
-
-// const Card = () => {
-//   return (
-//     <div className="card-list">
-//       {cardList.map((card, i) => {
-//         <Card key={i} title={card} />;
-//       })}
-//     </div>
-//   );
-// };
-// export default Card;

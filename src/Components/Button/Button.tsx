@@ -1,7 +1,12 @@
 //@ts-nocheck
 import React from "react";
+interface PropsButton {
+  text: string;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+}
 
-const Button = ({ text, onClick }) => {
-  return <div className="button" onClick={onClick}>{text}</div>;
+
+const Button = ({ text, onClick }: PropsButton): JSX.Element  => {
+  return <div className="button" role="button" onClick={onClick}>{text}</div>;
 };
 export default Button;
