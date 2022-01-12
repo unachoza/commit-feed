@@ -19,8 +19,8 @@ const {data, loading} = useFetch(repositoryQueryOwner,repositoryQueryTitle, fire
     <div className="App">
       <Header text="Github Commit Feed" />
       <div className="search-container">
-        <TextInput placeholder="Repository Owner" setSearchValue={setRepositoryQueryOwner} />
-        <TextInput placeholder="Repository Title " setSearchValue={setRepositoryQueryTitle} />
+        <TextInput placeholder="Repository Owner" label="Repository Owner" setSearchValue={setRepositoryQueryOwner} />
+        <TextInput placeholder="Repository Title" label="Repository Title" setSearchValue={setRepositoryQueryTitle} />
         <Button text="Search" onClick={() => setFireCommitFetch(prevFireCommitFetch => !prevFireCommitFetch)} />
       </div>
       <>
