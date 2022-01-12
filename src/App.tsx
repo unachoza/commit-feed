@@ -21,7 +21,7 @@ const {data, loading} = useFetch(repositoryQueryOwner,repositoryQueryTitle, fire
       <div className="search-container">
         <TextInput placeholder="Repository Owner" setSearchValue={setRepositoryQueryOwner} />
         <TextInput placeholder="Repository Title " setSearchValue={setRepositoryQueryTitle} />
-        <Button text="Load More" onClick={() => setFireCommitFetch(prevFireCommitFetch => !prevFireCommitFetch)} />
+        <Button text="Search" onClick={() => setFireCommitFetch(prevFireCommitFetch => !prevFireCommitFetch)} />
       </div>
       <>
         {loading ? <Loading /> : null}

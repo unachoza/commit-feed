@@ -1,10 +1,11 @@
 //@ts-nocheck
+import React from 'react';
 import Card from "../Card/Card";
 interface CardListProps {
   data: any,
   title:string
 }
-const CardList = (props: CardListProps) => {
+const CardList = (props: CardListProps): JSX.Element => {
   const {card, title} = props;
   return (
     <div className="commit__container">

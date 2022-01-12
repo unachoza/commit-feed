@@ -1,3 +1,4 @@
+import React from 'react';
 
 const Card = (props:any ): JSX.Element => {
   const {commit} = props;
