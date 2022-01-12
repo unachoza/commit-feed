@@ -1,8 +1,11 @@
 //@ts-nocheck
-import React from "react";
 import Card from "../Card/Card";
-
-const CardList = ({ data, title }) => {
+interface CardListProps {
+  data: any,
+  title:string
+}
+const CardList = (props: CardListProps) => {
+  const {data, title} = props;
   return (
     <div className="commit__container">
       {data.length ? (

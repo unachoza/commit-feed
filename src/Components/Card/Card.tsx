@@ -1,6 +1,7 @@
-//@ts-nocheck
+import { repositoryCommitMessage } from '../../API/useFetch'
 
-const Card: React.FC = ({ commit }) => {
+const Card = (props:any ): JSX.Element => {
+  const {commit} = props;
   return (
     <>
       <a href={commit[1].url} className="card" target="_blank" rel="noreferrer">
