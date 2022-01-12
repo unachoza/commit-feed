@@ -1,8 +1,15 @@
 //@ts-nocheck
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 const GITHUB_BASE_URL = 'https://api.github.com';
 
+export interface repositoryCommitMessage  {
+  date: {}
+  commitMessage: "string"
+  url: "string",
+  username: "string"
+} 
+interface repositoryCommitMessages extends Array<repositoryCommitMessage>{}
 
 export const repositoryFetch = async( queryText: string)  => {
   const data = await axios.get(`${GITHUB_BASE_URL}/search/repositories?q=${encodeURIComponent(queryText)}`);
@@ -12,8 +19,9 @@ export const repositoryFetch = async( queryText: string)  => {
 };
 
 
+
 export const useFetch = (repositoryOwner: string, repositoryName: string, fire: boolean) => {
-  const [data, setData] = useState([])
+  const [data, setData ] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   
@@ -26,7 +34,7 @@ export const useFetch = (repositoryOwner: string, repositoryName: string, fire: 
         const repositoryCommitMessages = shapeData(items, normalizeCommitData)
         setData(repositoryCommitMessages)
       }
-      catch (err) {
+      catch (err: any) {
         setError(err)
       }
       finally {
