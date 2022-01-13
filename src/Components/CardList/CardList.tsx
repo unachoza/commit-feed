@@ -2,7 +2,7 @@
 import React from 'react';
 import Card from "../Card/Card";
 interface CardListProps {
-  data: any,
+  card: any,
   title:string
 }
 const CardList = (props: CardListProps): JSX.Element => {
