@@ -17,7 +17,7 @@ interface RepositoryCommitMessages extends Array<RepositoryCommitMessage> {}
 export const useFetch = (repositoryOwner: string, repositoryName: string, fireCommitFetch: boolean):Promise<RepositoryCommitMessages> => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchCommits = async () => {
@@ -30,10 +30,9 @@ export const useFetch = (repositoryOwner: string, repositoryName: string, fireCo
         );
         const items = commits.data;
         const RepositoryCommitMessages = normalizeData(items, normalizeCommitData);
-        console.log(RepositoryCommitMessages);
         setData(RepositoryCommitMessages);
       } catch (err: any) {
-        setError(err);
+       setError(err);
       } finally {
         setLoading(false);
       }

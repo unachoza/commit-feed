@@ -4,21 +4,13 @@
 .commit__container {
   justify-content: center;
   align-items: center;
-  margin: 11vh 20px 0vh 35px;
+  margin: 10px 20px 0vh 35px;
   border-radius: 10px;
   overflow: scroll;
   padding: 20px;
   animation: crescendo 0.3s ease-in;
 }
 
-.no-results {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  color: #004ac7;
-  font-size: 28px;
-  animation: moveInLeft 0.4s ease-in;
-}
 ul {
   margin: 0;
   padding: 0;
