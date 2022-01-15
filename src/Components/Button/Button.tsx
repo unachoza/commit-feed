@@ -1,6 +1,6 @@
 //@ts-nocheck
 import React from "react";
-interface PropsButton {
+export interface PropsButton {
   text: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
