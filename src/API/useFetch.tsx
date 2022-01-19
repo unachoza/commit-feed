@@ -1,7 +1,8 @@
 //@ts-nocheck
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 const GITHUB_BASE_URL = "https://api.github.com";
+
 
 export interface RepositoryCommitMessage {
   date: {
@@ -14,7 +15,11 @@ export interface RepositoryCommitMessage {
 }
 interface RepositoryCommitMessages extends Array<RepositoryCommitMessage> {}
 
-export const useFetch = (repositoryOwner: string, repositoryName: string, fireCommitFetch: boolean):Promise<RepositoryCommitMessages> => {
+export const useFetch = (
+  repositoryOwner: string,
+  repositoryName: string,
+  fireCommitFetch: boolean
+): Promise<RepositoryCommitMessages> => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -32,7 +37,7 @@ export const useFetch = (repositoryOwner: string, repositoryName: string, fireCo
         const RepositoryCommitMessages = normalizeData(items, normalizeCommitData);
         setData(RepositoryCommitMessages);
       } catch (err: any) {
-       setError(err);
+        setError(err);
       } finally {
         setLoading(false);
       }

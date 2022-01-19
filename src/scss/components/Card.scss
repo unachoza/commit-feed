@@ -22,7 +22,6 @@
 
 .date {
   text-align: left;
-  padding: 5px;
   font-size: 12px;
 }
 .date:after {
@@ -45,6 +44,7 @@ a:link, a:visited {
   align-items: flex-end;
   padding: 0px 20px;
   width: 100%;
+  word-break: break-word
 }
 span{
   text-decoration: underline;

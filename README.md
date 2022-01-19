@@ -13,7 +13,7 @@ There could always be more user feed back, like describing error messages and te
 Thank you for taking the time to look at my code :)
 
 ## How to run 
-### `npm start`
+### `npm run start:frontend`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
